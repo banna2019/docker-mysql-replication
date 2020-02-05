@@ -1,0 +1,19 @@
+version: '3'
+services:
+  mysql_master:
+    image: mysql:5.7.29
+    #env_file:
+    #  - ./master/mysql_master.env
+    container_name: "mysql_master"
+    restart: "always"
+    #network_mode: "host"
+    ports:
+      - 3306:3306
+    volumes:
+      - ./master/conf/mysql.conf.cnf:/etc/mysql/my.cnf
+      #- ./master/conf/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
+      - /data/master/data:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+
